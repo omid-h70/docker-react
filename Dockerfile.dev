@@ -1,0 +1,12 @@
+#docker build -f Dockerfile.dev .
+FROM node:18-alpine
+
+WORKDIR /usr/app
+COPY ./package.json ./
+# this command installs all the dependencies in you image
+RUN npm install 
+
+EXPOSE 3000
+# you dont need to copy whole files to your image !
+COPY ./ ./
+CMD ["npm", "run", "start"]
